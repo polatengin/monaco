@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 
 type User = {
   name: string;
@@ -9,6 +9,13 @@ type User = {
 export const App: FunctionComponent = () => {
 
   const [user, setUser] = React.useState<User | null>(null);
+
+  useEffect(() => {
+    const user = localStorage.getItem('user');
+    if (user) {
+      setUser(JSON.parse(user));
+    }
+  }, []);
 
   return (
     <div>
