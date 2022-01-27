@@ -1,10 +1,8 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 
-function App() {
+export const App: FunctionComponent = () => {
   return (
     <div>
     </div>
   );
-}
-
-export default App;
+};
