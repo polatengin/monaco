@@ -7,6 +7,9 @@ type User = {
 };
 
 export const App: FunctionComponent = () => {
+
+  const [user, setUser] = React.useState<User | null>(null);
+
   return (
     <div>
     </div>
