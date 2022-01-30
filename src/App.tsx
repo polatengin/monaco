@@ -60,6 +60,12 @@ export const App: FunctionComponent = () => {
     });
   }, []);
 
+  useEffect(() => {
+    const pageList = data.flatMap(group => group.pages).filter(page => user.pinnedPages.includes(page.id));
+
+    setPinnedPages(pageList);
+  }, [data, user.pinnedPages]);
+
   return (
     <div>
     </div>
