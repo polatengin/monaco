@@ -1,3 +1,10 @@
+export type GroupModel = {
+  name: string;
+  pages: PageModel[];
+  isHidden: boolean;
+  isExpanded: boolean;
+};
+
 export type PageModel = {
   id: string;
   title: string;
