@@ -32,10 +32,17 @@ export const App: FunctionComponent = () => {
   };
 
   useEffect(() => {
-    const user = localStorage.getItem('user');
+    const user = localStorage.getItem("user");
     if (user) {
       setUser(JSON.parse(user));
     }
+
+    const hour = new Date().getHours();
+
+    if (hour < 12) setGreeting(Greetings[0]);
+    else if (hour < 18) setGreeting(Greetings[1]);
+    else setGreeting(Greetings[2]);
+
   }, []);
 
   return (
