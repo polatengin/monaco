@@ -67,6 +67,12 @@ export const App: FunctionComponent = () => {
   }, [data, user.pinnedPages]);
 
   return (
+    <div className="relative w-full h-full bg-gray-100 select-none">
+      <div className="flex bg-slate-700 text-white p-8 items-center">
+        <h1 className="flex-grow text-4xl">{greeting} {user.name}</h1>
+
+        <i className="fa-solid fa-pen-to-square w-8 h-8 p-2 cursor-pointer" onClick={() => setIsEditing(true)}></i>
+      </div>
     <div>
     </div>
   );
