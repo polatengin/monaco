@@ -14,6 +14,12 @@ export const App: FunctionComponent = () => {
 
   const [pinnedPages, setPinnedPages] = React.useState<PageModel[]>([]);
 
+  const clear = () => {
+    setUser({ name: "", pinnedPages: [] });
+    setPinnedPages([]);
+    setIsEditing(false);
+    localStorage.clear();
+  };
 
   useEffect(() => {
     const user = localStorage.getItem('user');
