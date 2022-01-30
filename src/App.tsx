@@ -43,6 +43,9 @@ export const App: FunctionComponent = () => {
     else if (hour < 18) setGreeting(Greetings[1]);
     else setGreeting(Greetings[2]);
 
+    fetch("/data.json").then(r => r.json()).then((data: GroupModel[]) => {
+      setData(data);
+    });
   }, []);
 
   return (
