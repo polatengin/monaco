@@ -73,6 +73,27 @@ export const App: FunctionComponent = () => {
 
         <i className="fa-solid fa-pen-to-square w-8 h-8 p-2 cursor-pointer" onClick={() => setIsEditing(true)}></i>
       </div>
+
+      <div className="flex-row">
+        <div className="flex bg-gray-500 p-4 text-white items-center cursor-pointer">
+          <span className="flex-grow">Pinned Pages</span>
+
+          <i className="fa-solid fa-chevron-down p-2 w-8 h-8"></i>
+        </div>
+        <div className="grid grid-cols-3 grid-flow-row gap-4 m-4">
+          {pinnedPages.map((page) => (
+            <a key={page.id} className="flex flex-row rounded overflow-hidden h-40 border shadow shadow-md hover:shadow-xl " href={page.link} target="_blank">
+              <i style={{ backgroundImage: `linear-gradient(${page.tileColor}, ${page.gradientColor})` }} className={`block h-full w-32 flex items-center justify-center bg-cover text-white text-7xl ${page.iconClassName}`}></i>
+
+              <div className="bg-white w-full p-4 flex flex-col justify-between leading-normal">
+                <span className="font-bold block leading-tight">{page.title}</span>
+                <span className="flex-grow text-gray-500 block text-sm my-2">{page.description}</span>
+                <span className="text-blue-500 text-sm">{page.link}</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
     <div>
     </div>
   );
