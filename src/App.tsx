@@ -21,6 +21,16 @@ export const App: FunctionComponent = () => {
     localStorage.clear();
   };
 
+  const toggleGroup = (group: GroupModel) => {
+    const temp = data.map((g) => {
+      if (g.name === group.name) {
+        return { ...g, isExpanded: !g.isExpanded };
+      }
+      return g;
+    });
+    setData(temp);
+  };
+
   useEffect(() => {
     const user = localStorage.getItem('user');
     if (user) {
