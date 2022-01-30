@@ -119,7 +119,67 @@ export const App: FunctionComponent = () => {
           </div>
         ))}
       </div>
-    <div>
+
+      {isEditing && <div className="absolute right-0 top-0 w-2/5 h-full bg-white drop-shadow-lg">
+        <div className="flex bg-slate-800 p-8 text-white items-center">
+          <span className="flex-grow text-4xl">Configure</span>
+
+          <div className="flex justify-end">
+            <i className="bg-slate-800 p-2 text-white fa-solid fa-xmark w-8 h-8 p-2 cursor-pointer" onClick={() => setIsEditing(false)}></i>
+          </div>
+        </div>
+        <div className="px-4">
+          <form autoComplete="off" onSubmit={(e) => {
+            localStorage.setItem("user", JSON.stringify(user));
+
+            e.preventDefault();
+          }}>
+            <div className="py-2">
+              <button onClick={() => clear()} className="text-red-500 bg-red-100 rounded px-4 py-2"><i className="mr-2 fa-solid fa-trash-can"></i>Clear customization data</button>
+            </div>
+            <div className="py-2">
+              <label className="text-gray-800 font-bold mb-1 block" htmlFor="name">
+                Your Name
+              </label>
+              <input type="text" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-800 focus:outline-none focus:shadow-outline" id="name" autoComplete="off" onChange={(e) => {
+
+                const name = e.target.value;
+
+                setUser({ ...user, name });
+
+                localStorage.setItem("user", JSON.stringify({ ...user, name }));
+              }} value={user.name} />
+            </div>
+            <div className="py-2">
+              <label className="text-gray-800 font-bold mb-1 block">
+                Pinned Pages
+              </label>
+              <div>
+                {data.map(group => group.pages.map(page => (
+                  <div key={page.id}>
+                    <i className={`p-2 cursor-pointer fa-solid fa-${user.pinnedPages.includes(page.id) ? "minus" : "thumbtack"}`} onClick={() => {
+                      const pinnedPages = user.pinnedPages;
+
+                      pinnedPages.includes(page.id) ? pinnedPages.splice(pinnedPages.indexOf(page.id), 1) : pinnedPages.push(page.id);
+
+                      setUser({ ...user, pinnedPages });
+
+                      const pageList = data.flatMap(group => group.pages).filter(page => user.pinnedPages.includes(page.id));
+
+                      setPinnedPages(pageList);
+
+                      localStorage.setItem("user", JSON.stringify(user));
+                    }}></i>
+                    <span className="ml-2">{page.title}</span>
+                  </div>
+                )))
+                }
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      }
     </div>
   );
 };
