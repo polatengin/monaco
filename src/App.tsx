@@ -44,6 +44,18 @@ export const App: FunctionComponent = () => {
     else setGreeting(Greetings[2]);
 
     fetch("/data.json").then(r => r.json()).then((data: GroupModel[]) => {
+      data.forEach(group => {
+        group.pages.forEach(page => {
+          const hsl = page.tileColor.replace("hsl(", "").replace(")", "").split(",");
+          const h = parseInt(hsl[0]);
+          const s = parseInt(hsl[1].replace("%", ""));
+          const l = parseInt(hsl[2].replace("%", ""));
+
+          page.tileColor = `hsl(${h}, ${s + 10}%, ${l + 10}%)`;
+          page.gradientColor = `hsl(${h}, ${s - 10}%, ${l - 10}%)`;
+        });
+      });
+
       setData(data);
     });
   }, []);
