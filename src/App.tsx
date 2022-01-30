@@ -94,6 +94,31 @@ export const App: FunctionComponent = () => {
           ))}
         </div>
       </div>
+
+      <div className="flex-row">
+        {data.map(group => (
+          <div key={group.name}>
+            <div className="flex bg-gray-500 p-4 text-white items-center cursor-pointer" onClick={() => toggleGroup(group)}>
+              <span className="flex-grow">{group.name}</span>
+
+              <i className={`fa-solid p-2 w-8 h-8 ${group.isExpanded ? "fa-chevron-up" : "fa-chevron-down"}`}></i>
+            </div>
+            <div className="grid grid-cols-3 grid-flow-row gap-4 m-4">
+              {group.isExpanded && group.pages.map(page => (
+                <a key={page.id} className="flex flex-row rounded overflow-hidden h-40 border shadow shadow-md hover:shadow-xl " href={page.link} target="_blank">
+                  <i style={{ backgroundImage: `linear-gradient(${page.tileColor}, ${page.gradientColor})` }} className={`block h-full w-32 flex items-center justify-center bg-cover text-white text-7xl ${page.iconClassName}`}></i>
+
+                  <div className="bg-white w-full p-4 flex flex-col justify-between leading-normal">
+                    <span className="font-bold block leading-tight">{page.title}</span>
+                    <span className="flex-grow text-gray-500 block text-sm my-2">{page.description}</span>
+                    <span className="text-blue-500 text-sm">{page.link}</span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
     <div>
     </div>
   );
