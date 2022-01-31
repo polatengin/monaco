@@ -82,7 +82,7 @@ export const App: FunctionComponent = () => {
         </div>
         <div className="grid grid-cols-3 grid-flow-row gap-4 m-4">
           {pinnedPages.map((page) => (
-            <a key={page.id} className="flex flex-row rounded overflow-hidden h-40 border shadow shadow-md hover:shadow-xl " href={page.link} target="_blank">
+            <a key={page.id} className="flex flex-row rounded overflow-hidden h-40 border shadow shadow-md hover:shadow-xl " href={page.link} target="_blank" rel="noreferrer">
               <i style={{ backgroundImage: `linear-gradient(${page.tileColor}, ${page.gradientColor})` }} className={`block h-full w-32 flex items-center justify-center bg-cover text-white text-7xl ${page.iconClassName}`}></i>
 
               <div className="bg-white w-full p-4 flex flex-col justify-between leading-normal">
@@ -105,7 +105,7 @@ export const App: FunctionComponent = () => {
             </div>
             <div className="grid grid-cols-3 grid-flow-row gap-4 m-4">
               {group.isExpanded && group.pages.map(page => (
-                <a key={page.id} className="flex flex-row rounded overflow-hidden h-40 border shadow shadow-md hover:shadow-xl " href={page.link} target="_blank">
+                <a key={page.id} className="flex flex-row rounded overflow-hidden h-40 border shadow shadow-md hover:shadow-xl " href={page.link} target="_blank" rel="noreferrer">
                   <i style={{ backgroundImage: `linear-gradient(${page.tileColor}, ${page.gradientColor})` }} className={`block h-full w-32 flex items-center justify-center bg-cover text-white text-7xl ${page.iconClassName}`}></i>
 
                   <div className="bg-white w-full p-4 flex flex-col justify-between leading-normal">
