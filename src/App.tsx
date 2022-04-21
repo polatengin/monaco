@@ -12,7 +12,7 @@ export const App: FunctionComponent = () => {
 
   const [data, setData] = useState<GroupModel[]>([]);
 
-  const [pinnedPages, setPinnedPages] = React.useState<PageModel[]>([]);
+  const [pinnedPages, setPinnedPages] = useState<PageModel[]>([]);
 
   const clear = () => {
     setUser({ name: "", pinnedPages: [] });
