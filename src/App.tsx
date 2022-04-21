@@ -1,16 +1,16 @@
-import React, { FunctionComponent, useEffect } from "react";
+import React, { FunctionComponent, useEffect, useState } from "react";
 
 import { Greetings, GroupModel, PageModel, UserModel } from "./_DataModels";
 
 export const App: FunctionComponent = () => {
 
-  const [user, setUser] = React.useState<UserModel>({ name: "", pinnedPages: [] } as UserModel);
+  const [user, setUser] = useState<UserModel>({ name: "", pinnedPages: [] } as UserModel);
 
-  const [greeting, setGreeting] = React.useState<string>("");
+  const [greeting, setGreeting] = useState<string>("");
 
-  const [isEditing, setIsEditing] = React.useState<boolean>(false);
+  const [isEditing, setIsEditing] = useState<boolean>(false);
 
-  const [data, setData] = React.useState<GroupModel[]>([]);
+  const [data, setData] = useState<GroupModel[]>([]);
 
   const [pinnedPages, setPinnedPages] = React.useState<PageModel[]>([]);
 
