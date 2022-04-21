@@ -14,6 +14,7 @@ export const App: FunctionComponent = () => {
 
   const [pinnedPages, setPinnedPages] = useState<PageModel[]>([]);
 
+  const [filteredPages, setFilteredPages] = useState<PageModel[]>([]);
   const clear = () => {
     setUser({ name: "", pinnedPages: [] });
     setPinnedPages([]);
