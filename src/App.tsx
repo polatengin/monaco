@@ -80,9 +80,15 @@ export const App: FunctionComponent = () => {
   }, [query, data]);
 
   return (
-    <div className="relative w-full h-full bg-gray-100 select-none">
-      <div className="flex bg-slate-700 text-white p-8 items-center">
-        <h1 className="flex-grow text-4xl">{greeting} {user.name}</h1>
+    <div className="relative w-full h-full min-h-screen bg-gray-100 select-none">
+      <div className="flex bg-slate-700 text-white p-8 items-center space-x-8">
+        <h1 className="text-4xl">{greeting} {user.name}</h1>
+        <span className="flex-grow"></span>
+        <div className="w-1/2 border rounded-full px-2 flex items-center">
+          <input type="text" className="w-full bg-transparent text-white outline-none p-2" placeholder="Search" value={query} onChange={event => setQuery(event.target.value)} />
+          {query.length > 0 && <i className="p-2 text-white fa-solid fa-xmark w-8 h-8 p-2 cursor-pointer" onClick={() => setQuery("")}></i>}
+        </div>
+        <span className="flex-grow"></span>
 
         <i className="fa-solid fa-pen-to-square w-8 h-8 p-2 cursor-pointer" onClick={() => setIsEditing(true)}></i>
       </div>
@@ -94,6 +100,19 @@ export const App: FunctionComponent = () => {
           <span className="flex-grow">Filtered Pages</span>
 
           <i className="fa-solid fa-chevron-down p-2 w-8 h-8"></i>
+        </div>
+        <div className="grid grid-cols-3 grid-flow-row gap-4 m-4">
+          {filteredPages.map((page) => (
+            <a key={page.id} className="flex flex-row rounded overflow-hidden h-40 border shadow shadow-md hover:shadow-xl " href={page.link} target="_blank" rel="noreferrer">
+              <i style={{ backgroundImage: `linear-gradient(${page.tileColor}, ${page.gradientColor})` }} className={`block h-full w-32 flex items-center justify-center bg-cover text-white text-7xl ${page.iconClassName}`}></i>
+
+              <div className="bg-white w-full p-4 flex flex-col justify-between leading-normal">
+                <span className="font-bold block leading-tight">{page.title}</span>
+                <span className="flex-grow text-gray-500 block text-sm my-2">{page.description}</span>
+                <span className="text-blue-500 text-sm">{page.link}</span>
+              </div>
+            </a>
+          ))}
         </div>
         </>
         )}
