@@ -70,6 +70,15 @@ export const App: FunctionComponent = () => {
     setPinnedPages(pageList);
   }, [data, user.pinnedPages]);
 
+  useEffect(() => {
+    const timeOutId = setTimeout(() => {
+      const filtered = data.flatMap(group => group.pages).filter(page => page.title.toLowerCase().includes(query.toLowerCase()));
+
+      setFilteredPages(filtered);
+    }, 500);
+    return () => clearTimeout(timeOutId);
+  }, [query, data]);
+
   return (
     <div className="relative w-full h-full bg-gray-100 select-none">
       <div className="flex bg-slate-700 text-white p-8 items-center">
