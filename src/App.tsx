@@ -88,6 +88,16 @@ export const App: FunctionComponent = () => {
       </div>
 
       <div className="flex-row">
+        {query.length > 0 && (
+        <>
+        <div className="flex bg-gray-500 p-4 text-white items-center cursor-pointer">
+          <span className="flex-grow">Filtered Pages</span>
+
+          <i className="fa-solid fa-chevron-down p-2 w-8 h-8"></i>
+        </div>
+        </>
+        )}
+      </div>
 
       <div className="flex-row">
         {pinnedPages.length > 0 && (
